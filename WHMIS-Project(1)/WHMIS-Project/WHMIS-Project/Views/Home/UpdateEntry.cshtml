@@ -1,0 +1,192 @@
+﻿@model WHMIS_Project.Models.Safety_DataSheet
+@{
+    ViewBag.Title = "UpdateEntry";
+}
+
+<h2>UpdateEntry</h2>
+
+
+@using (Html.BeginForm("UpdateEntry", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (!Model.IsEditable)
+    {
+
+        <fieldset>
+            <legend>Safety Data Sheet Details</legend>
+            <p>
+
+                @Html.HiddenFor(m => m.Id)
+            </p>
+            <p>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        Product Name:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.ChemicalName)
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-2">
+                        Revision Date:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.lastRevisionDate)
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        CAS Number:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.CAS)
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        File Name:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.FileDocName)
+                    </div>
+                </div><br>
+                @Html.ActionLink("Edit", "InfoEdit", new { confirm = true, id = Model.Id },
+                                 new { onclick = "return confirm('Only authorized user should edit this entry, Click yes to continue')" }) &nbsp;
+
+                @Html.ActionLink("Delete", "DeleteAction", new { confirm = true, id = Model.Id },
+                                 new { onclick = "return confirm('Do you really want to delete this product?')" }) &nbsp;
+
+        </fieldset>
+
+
+    }
+    else
+    {
+
+        <fieldset>
+            <legend>Safety Data Sheet Details</legend>
+
+            <p>
+
+                @Html.HiddenFor(m => m.Id)
+            </p>
+            <div class="row">
+                <div class="col-md-2">
+                    Product Name:
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.ChemicalName, new
+                     {
+                             title = "Enter new text to replace exiting chemical/Substance name",
+                             @class = "form-control input-sm input-tooltip",
+                             data_toggle = "tooltip",
+                             data_placement = "right",
+                             autocomplete = "off"
+
+                     })
+
+                </div>
+            </div><br>
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    Change Revision Date:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.lastRevisionDate, new
+                        {
+                                title = "Change revision date",
+                                @class = "form-control datePickerPickcer input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                id = "datepicker",
+                                autocomplete = "off"
+
+                        })
+                    </div>
+
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Chemical Abstracts Service (CAS) Number:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.CAS, new
+                        {
+                                title = "Enter new CAS Number to replace existing one",
+                                @class = "form-control input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                autocomplete = "off"
+                        })
+                    </div>
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Replace File:
+                </div>
+                <div class="col-md-6">
+                    <input type="file" name="file" id="file" class="input-tooltip" data-toggle="tooltip" data-placement="bottom" title="click to select a pdf file" />
+                </div>
+            </div><br>
+
+        </fieldset>
+
+        <input type="submit" class="btn btn-link" value="update" name="update" />
+
+        @Html.ActionLink("Cancel", "UpdateEntry", new { id = Model.Id })
+
+    }
+
+    <br />
+    <br />
+    <a href="~/Home/SafetySheet" class="input-tooltip" data-toggle="tooltip" data-placement="right" title="Go to safety datasheet database">Safety Datasheet</a>
+}
+
+<h3><span style="font-size: 16px; color: #62adaf;">Note: </span></h3>
+<p>The chemical name and all other information provided must correspond to the information on the safety data sheet related to this product  </p>
+
+
+@if (ViewBag.Message != null)
+{
+    <script>
+
+    $(document).ready(function () {
+
+        alert('@ViewBag.Message');
+
+    });
+
+    </script>
+
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#datepicker").datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            //gotoCurrent: true,
+        });
+    });
+
+</script>
+

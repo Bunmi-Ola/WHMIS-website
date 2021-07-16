@@ -1,0 +1,8 @@
+CorrelationId: 5c520c97-a793-44bf-81e6-db96cb35ff87
+UTC DateTime: 3/30/2020 5:22:22 PM
+
+The following files/folders have not been downloaded
+1. WHMIS-Project/packages/Newtonsoft.Json.11.0.1/lib/portable-net40%2Bsl5%2Bwin8%2Bwp8%2Bwpa81/Newtonsoft.Json.dll
+2. WHMIS-Project/packages/Newtonsoft.Json.11.0.1/lib/portable-net40%2Bsl5%2Bwin8%2Bwp8%2Bwpa81/Newtonsoft.Json.xml
+3. WHMIS-Project/packages/Newtonsoft.Json.11.0.1/lib/portable-net45%2Bwin8%2Bwp8%2Bwpa81/Newtonsoft.Json.dll
+4. WHMIS-Project/packages/Newtonsoft.Json.11.0.1/lib/portable-net45%2Bwin8%2Bwp8%2Bwpa81/Newtonsoft.Json.xml

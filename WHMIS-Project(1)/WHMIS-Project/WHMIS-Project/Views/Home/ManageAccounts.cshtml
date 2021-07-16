@@ -1,0 +1,94 @@
+﻿@model WHMIS_Project.Models.login
+@{
+    ViewBag.Title = "Manage Accounts";
+}
+    <h4><a href="~/Home/AddUser">Add User</a></h4>
+@using (Html.BeginForm("ManageAccounts", "Home", FormMethod.Post))
+{
+
+    var i = 0;
+    <div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <label for="SearchUser">Search by User Name:</label>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group input">
+                    <input type="text" class="form-control input-sm input-tooltip" name="searchUser" id="searchUser"
+                           data-toggle="tooltip" data-placement="right" title="Enter user name to search">
+                </div>
+
+            </div>
+        </div><br />
+    </div>
+    <br />
+    <br />
+
+    <div class="alphabet"></div>
+
+    <table id="DataTable" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+        <thead>
+            <tr id="TableHeader">
+                <th>User Name</th>
+                <th>Master Account</th>
+                <th>Delete User</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (i = 0; i < Model.Items.Count(); i++)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(m => m.Items[i].UserName, new { width = "100" })</td>
+                    <td>@Html.DisplayFor(m => m.Items[i].IsMaster, new { width = "100" })</td>                 
+
+                    <td>
+                        @Html.ActionLink("Delete", "DeleteUser", new { confirm = true, id = Model.Items[i].Id },
+                        new
+                             {
+                             onclick = "return confirm('Are you sure you want to delete this user: " + Model.Items[i].UserName + "? ')",
+                             title = "Click to delete " + Model.Items[i].UserName,
+                             @class = "input-tooltip",
+                             data_toggle = "tooltip",
+                             data_placement = "bottom"
+                         })&nbsp;
+
+                    </td>
+
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+}
+
+<script type="text/javascript">
+
+
+
+            $(document).ready(function () {
+                var table = $("#DataTable").DataTable({
+
+                    "bPaginate": true,
+                    "bLengthChange": true,
+                    "bSort": true,
+                    "bAutoWidth": false,
+                    dom: 'lrtip'
+                });
+
+
+
+                $('#searchUser').on('keyup', function () {
+                    table
+                        .columns(0)
+                        .search(this.value)
+                        .draw();
+                });
+          
+                $('[data-toggle="tooltip"]').tooltip();
+
+            });
+</script>
+

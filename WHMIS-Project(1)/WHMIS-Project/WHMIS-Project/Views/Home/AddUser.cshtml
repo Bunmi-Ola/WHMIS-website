@@ -1,0 +1,126 @@
+﻿@model WHMIS_Project.Models.login
+@{
+    ViewBag.Title = "Add User";
+}
+
+<h2>Add User</h2>
+
+<form action="" method="post" enctype="multipart/form-data">
+    <br />
+    <fieldset>
+        <legend>Enter New User Information</legend>
+        <div class="editor-field">
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    User Email:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.UserName, new
+                   {
+                       title = "Enter user's email. Ex: user1234@saskpolytech.ca",
+                       @class = "form-control input-sm input-tooltip",
+                       data_toggle = "tooltip",
+                       data_placement = "right",
+                       autocomplete = "off"
+
+                   })
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Password:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.NewPassword, new
+                   {
+                       title = "Enter user's password",
+                       @class = "form-control input-sm input-tooltip",
+                       data_toggle = "tooltip",
+                       data_placement = "right",
+                       autocomplete = "off"
+
+                   })
+                        @Html.ValidationMessageFor(m => m.NewPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Confirm Password:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.ConfirmPassword, new
+                   {
+                       title = "Confirm user's password",
+                       @class = "form-control input-sm input-tooltip",
+                       data_toggle = "tooltip",
+                       data_placement = "right",
+                       autocomplete = "off"
+
+                   })
+                        @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.CheckBoxFor(m => m.IsMaster, new
+                   {
+                       type = "checkbox",
+                       title = "Check if master account",
+                       @class = "input-tooltip",
+                       data_toggle = "tooltip",
+                       data_placement = "right",
+
+                   })
+                        Master Account
+                    </div>
+                </div>
+            </div><br>
+        </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-5">
+
+                <input type="submit" value="Add User" name="Add" id="addBTN" class="btn btn-info input-tooltip"
+                       data-toggle="tooltip" data-placement="right" title="Click to add new user" /><br>
+
+            </div>
+        </div>
+    </fieldset><br>
+    <a href="~/Home/ManageAccounts" class="input-tooltip" data-toggle="tooltip" data-placement="right" title="Go back to Manage User Accounts Page">Manage User Accounts</a>
+    <br />
+    <br />
+</form>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+
+    $(document).ready(function () {
+
+        alert('@ViewBag.Message');
+
+    });
+    </script>
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+    });
+
+</script>

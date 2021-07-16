@@ -1,0 +1,232 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    font-family: Roboto, Helvetica, sans-serif;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 150px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+
+#header_container {
+    background-color: white;
+    color: #643687;
+    border: none;
+  
+}
+
+#collapse-header {
+    color: White;
+    background-color: #643687;
+    border: none;
+    width: 100%;
+    padding: 0px 20px 0px 20px;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: White;
+    font-size: 18px;
+}
+
+    .navbar-inverse .navbar-nav > li > a:hover {
+        font-weight: bold;
+        text-decoration: underline;
+    }
+
+    #TableHeader {
+        background-color: darkgray;
+        font-weight: bold;
+        font-size: medium;
+    }
+
+div.alphabet {
+    display: table;
+    width: 100%;
+    margin-bottom: 1em;
+}
+
+div.alphabet span {
+    display: table-cell;
+    color: #3174c7;
+    cursor: pointer;
+    text-align: center;
+    width: 3.5%
+}
+
+        div.alphabet span:hover {
+            text-decoration: underline;
+        }
+
+        div.alphabet span.active {
+            color: black;
+        }
+
+.input {
+    margin-bottom: 5px;
+}
+
+#emailtag {
+    margin-bottom: 10px;
+}
+
+.tooltip-inner {
+    max-width: 500px;
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
+.input-tooltip + .tooltip > .tooltip-inner {
+    background-color: cornflowerblue;
+}
+
+.input-tooltip + .tooltip > .tooltip-arrow {
+    border-right-color: cornflowerblue;
+}
+
+
+.login-form {
+    background: #DCDCDC;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 2em;
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+.login-form-group {
+    margin: 20px 0;
+}
+.login-change-p {
+    color: #eee;
+    font-size: 13px;
+    text-align: center;
+    margin-top: 2em;
+}
+
+.login-form-group input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    border: none;
+    box-sizing: border-box;
+    background: transparent;
+    color: #000;
+    background: #FFFFFF
+}
+ input[type="text"]:focus,
+ input[type="password"]:focus {
+        outline: none;
+    }
+#loginButton, #addBTN {
+    background: #a29cd6;
+    color: #ffffff;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    padding: 12px 60px;
+    cursor: pointer;
+    width: 95%;
+    border-radius: 6px;
+}
+    #loginButton:hover, #addBTN:hover {
+        background-color: #00BCD4;
+        transition-duration: 1s;
+    }
+.forgot {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0 0 0;
+    width: 90%;
+   
+}
+    .forgot p {
+        float: right;       
+    }
+
+.inner-addon {
+    position: relative;
+}
+
+    /* style icon */
+  .inner-addon .glyphicon {
+        position: absolute;
+        padding: 5px 10px;
+        pointer-events: none;
+    }
+/* align icon */
+.left-addon .glyphicon {
+    left: 10px;
+}
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+
+.ptxt {
+    float: right;
+    padding-right:30px;  
+    color: rebeccapurple;
+    cursor:pointer;
+}
+
+.ptxt:hover {
+   color: #333333;
+
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 30%; /* Could be more or less, depending on screen size */
+}
+
+
+    /* Full-width for input fields */
+.modal-content input[type=text]{
+    width: 100%;
+    padding: 10px;
+    margin: 10px; 
+    background: #eee;
+}
+/* When the inputs get focus, do something */
+.modal-content input[type=text]:focus{
+        background-color: #ddd;
+        outline: none;
+    }
+    /* Style submit/login button */
+    .modal-content .btn {
+        background-color: #643687;
+        color: #fff;
+        padding:10px;       
+        width: 90%;
+        margin: 10px;
+        opacity: 0.8;
+    }
+  
+    /* Hover effects for buttons */
+    .modal-content .btn:hover{
+        opacity: 1;
+    }

@@ -1,0 +1,238 @@
+﻿@model WHMIS_Project.Models.Safety_DataSheet
+@{
+    ViewBag.Title = "Update Safety Data Sheet";
+}
+
+<h2>Update Entry</h2>
+
+
+@using (Html.BeginForm("UpdateSDS", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (!Model.IsEditable)
+    {
+
+        <fieldset>
+            <legend>Safety Data Sheet Details</legend>
+            <p>
+
+                @Html.HiddenFor(m => m.Id)
+            </p>
+            <p>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        Product Name:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.ChemicalName)
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-3">
+                        Revision Date:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.getlastRevisionDate)
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        Chemical Abstracts Service Number (CAS-No.):
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.CAS)
+                    </div>
+                </div><br>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        File Name:
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DisplayFor(m => m.FileDocName)
+                    </div>
+                </div><br>
+                @Html.ActionLink("Edit", "InfoEdit", new { confirm = true, id = Model.Id } ) &nbsp;
+
+                @Html.ActionLink("Delete", "DeleteAction", new { confirm = true, id = Model.Id },
+                                 new { onclick = "return confirm('Do you really want to delete this product?')" }) &nbsp;
+
+        </fieldset>
+
+
+    }
+    else
+    {
+
+        <fieldset>
+            <legend>Safety Data Sheet Details</legend>
+
+            <p>
+
+                @Html.HiddenFor(m => m.Id)
+            </p>
+            <div class="row">
+                <div class="col-md-3">
+                    Product Name:
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.ChemicalName, new
+                     {
+                             title = "Enter new text to replace exiting product name",
+                             @class = "form-control input-sm input-tooltip",
+                              id="ChemicalNameTextbox",
+                             data_toggle = "tooltip",
+                             data_placement = "right",
+                             autocomplete = "off"
+
+                     })
+
+                </div>
+            </div><br>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    Change Revision Date:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.lastRevisionDate, "{0:MM/dd/yyyy}", new
+                        {
+                                title = "Change revision date",
+                                @class = "form-control datePickerPickcer input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                 id = "datepickerTextbox",
+                                autocomplete = "off"
+
+                        })
+                    </div>
+
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3">
+                    Chemical Abstracts Service Number (CAS-No.) :
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.CAS, new
+                        {
+                                title = "Enter new CAS-No. to replace existing one",
+                                @class = "form-control input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                autocomplete = "off"
+                        })
+                    </div>
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3">
+                    Replace File:
+                </div>
+                <div class="col-md-6">
+                    <input type="file" name="file" id="file" class="input-tooltip" data-toggle="tooltip" data-placement="bottom" title="click to select a pdf file" />
+                </div>
+            </div><br>
+
+        </fieldset>
+
+        <input type="submit" class="btn btn-link" value="update" name="update" id="updateSDS"/>
+
+        @Html.ActionLink("Cancel", "UpdateSDS", new { id = Model.Id })
+
+        <h4> Note</h4>
+        <p>The chemical name and all other information provided must correspond to the information on the safety data sheet related to this product  </p>
+
+
+    }
+
+
+}
+
+
+<br />
+<br />
+<a href="~/Home/SafetySheet" class="input-tooltip" data-toggle="tooltip" data-placement="right" title="Go to safety datasheet database">Safety Datasheet</a>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+
+    $(document).ready(function () {
+
+        alert('@ViewBag.Message');
+
+    });
+
+    </script>
+
+}
+
+<script>
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#datepickerTextbox").datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            
+        });
+
+          function isValidDate(dt) {
+
+            var validDate = /^(?:(0[1-9]|1[012])[\/.](0[1-9]|[12][0-9]|3[01])[\/.](19|20)[0-9]{2})$/;
+
+        return validDate.test(dt);
+        }
+                  
+
+         // putting answer in the button click event
+        $("#updateSDS").click(function () { 
+
+ 
+            if ($("#ChemicalNameTextbox").val() == "") {
+
+                alert("'Product name' field is required");
+                return false;
+            }
+
+            else if ($("#datepickerTextbox").val() == "") {
+                    alert("'last revision date' field is required");
+                    return false;
+            }
+
+            else if (!isValidDate($("#datepickerTextbox").val())) {
+                    alert("Invalid date format: " + $("#datepickerTextbox").val());
+                    return false;
+               }                 
+
+            else if (!$("#FileDocumentTextbox").validity.valid) { //compare global variable with each textbox
+
+                if ($("#FileDocumentTextbox").val() == "") {
+                    alert("SDS document is missing");
+                    return false;
+                }
+              
+            }
+
+         
+         return true; 
+        
+      });         
+
+    });
+
+</script>
+

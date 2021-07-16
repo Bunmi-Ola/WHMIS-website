@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="http://bis.siast.sk.ca/polywhmis/default.html" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^X:\\Sem4\\System\ Mgt\\WHMIS-Project\\WHMIS-Project\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^X:\\Sem4\\System\ Mgt\\WHMIS-Project\\WHMIS-Project\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>

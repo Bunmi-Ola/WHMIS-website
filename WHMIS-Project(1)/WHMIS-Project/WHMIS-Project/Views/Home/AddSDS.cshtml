@@ -1,0 +1,198 @@
+﻿@model WHMIS_Project.Models.Safety_DataSheet
+@{
+    ViewBag.Title = "Enter New Entry";
+}
+
+<h2>@ViewBag.Title</h2>
+@*<h3>@ViewBag.Message</h3>*@
+
+
+
+<form action="AddSDS" method="post" enctype="multipart/form-data" id="AddSDSForm">
+   
+    <fieldset>
+        <legend>SafetySheet Information</legend>
+        <div class="editor-field">
+
+            <div class="row">
+                <div class="col-md-3">
+                    Product Name:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.ChemicalName, new
+                        {
+                                title = "Enter Product name",
+                                @class = "form-control input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                autocomplete = "off",
+                                name="inputTextbox",
+                                id="ChemicalNameTextbox"
+
+                        })
+                    </div>
+                </div>
+
+            </div><br>
+            <div class="row">
+                <div class="col-md-3">
+                    Revision Date:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.lastRevisionDate, new
+                        {
+                                title = "Enter a date in mm/dd/yyyy format",
+                                @class = "form-control datePickerPickcer input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                id = "datepickerTextbox",
+                                autocomplete = "off",
+                                name="inputTextbox"                               
+
+                        })
+                    </div>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3">
+                    Chemical Abstracts Service Number (CAS-No.):
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.CAS, new
+                        {
+                                title = "Enter CAS-No.",
+                                @class = "form-control input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                autocomplete = "off"
+                        })
+                    </div>
+
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-3">
+                    Upload SDS:
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.FileDocument, new
+                    {
+                        type = "file",
+                                title = "Click to select a file",
+                                @class = "input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "bottom",
+                                name="inputTextbox",
+                                id="FileDocumentTextbox"
+                    })
+                </div>
+            </div><br>
+        </div>
+        <div class="col-md-5">
+
+        </div>
+        <div class="col-md-6">
+            <input type="submit" value="Upload" class="btn btn-info input-tooltip" id="submitSDS"
+                   data-toggle="tooltip" data-placement="right" title="Click to save new entry" />
+        </div>
+    </fieldset>
+
+</form>
+
+<h4> Note</h4>
+<p>The chemical name and all other information provided must correspond to the information on the safety data sheet related to this product  </p>
+
+<br />
+<br />
+
+<a href="~/Home/SafetySheet" class="input-tooltip" data-toggle="tooltip" data-placement="right" title="Go to SDS database">Safety Datasheet</a>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+
+    $(document).ready(function () {
+
+        alert('@ViewBag.Message');
+
+
+    });
+
+    </script>
+
+}
+
+
+<script >
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#datepickerTextbox").datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            //gotoCurrent: true,
+        });
+
+     
+        function isValidDate(dt) {
+
+            var validDate = /^(?:(0[1-9]|1[012])[\/.](0[1-9]|[12][0-9]|3[01])[\/.](19|20)[0-9]{2})$/;
+
+        return validDate.test(dt);
+        }
+                  
+
+         // putting answer in the button click event
+        $("#submitSDS").click(function () { 
+
+ 
+            if ($("#ChemicalNameTextbox").val() == "") {
+
+                alert("'Product name' field is required");
+                return false;
+            }
+
+            else if ($("#datepickerTextbox").val() == "") {
+                    alert("'last revision date' field is required");
+                    return false;
+            }
+
+            else if (!isValidDate($("#datepickerTextbox").val())) {
+                    alert("Invalid date format: " + $("#datepickerTextbox").val());
+                    return false;
+               }                 
+
+            else if (!$("#FileDocumentTextbox").validity.valid) { //compare global variable with each textbox
+
+                if ($("#FileDocumentTextbox").val() == "") {
+                    alert("SDS document is missing");
+                    return false;
+                }
+              
+            }
+
+         
+         return true; 
+        
+      });         
+
+          
+    });
+
+
+
+</script>
+
+
+
+

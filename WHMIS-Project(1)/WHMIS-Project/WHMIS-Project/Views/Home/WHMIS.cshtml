@@ -1,0 +1,91 @@
+﻿@model WHMIS_Project.Models.Safety_DataSheet
+
+
+
+@{
+    ViewBag.Title = "OH&S Datasheet";
+}
+
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+
+<form action="" method="post" enctype="multipart/form-data">
+
+    <H4>Upload New Doc</H4>
+    <div class="editor-field">
+
+        <p>
+            Chemical Name:
+            @Html.TextBoxFor(m => m.ChemicalName)
+        </p>
+
+        <p>
+            Upload Doc:
+            @Html.TextBoxFor(m => m.FileDocument, new { type = "file" })
+
+        </p><br>
+    </div>
+
+    <input type="submit" value="Upload Doc" /><br>
+
+</form><br><br>
+
+@using (Html.BeginForm("About", "Home", FormMethod.Post))
+{
+
+    var i = 0;
+
+
+<table id="DataTable" class="table table-striped table-bordered dt-responsive nowrap" width="100%" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Chemical Name </th>
+            <th>File Document</th>
+            <th>View</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @for (i = 0; i < Model.Items.Count(); i++)
+        {
+            <tr>
+
+
+                <td>@Html.DisplayFor(m => m.Items[i].ChemicalName, new { width = "100" })</td>
+
+                <td>@Html.DisplayFor(m => m.Items[i].FileDocName, new { width = "100" })</td>
+
+                @Html.HiddenFor(m => m.Items[i].Id)
+
+                <td>
+                    @Html.ActionLink("View", "ViewDoc", new { id = Model.Items[i].Id }, new { width = "100" })&nbsp;
+
+
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+}
+
+<script type="text/javascript">
+    
+
+     $(document).ready(function () {  
+            $("#DataTable").DataTable({  
+  
+             "bPaginate": true,
+                "bLengthChange": true,
+                "bFilter": true,
+                "bSort": true,
+                "bInfo": true,
+                "bAutoWidth": false,
+               
+            });
+          });
+       
+</script>

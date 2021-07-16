@@ -1,0 +1,145 @@
+﻿@model WHMIS_Project.Models.Safety_DataSheet
+@{
+    ViewBag.Title = "Enter New Entry";
+}
+
+<h2>@ViewBag.Title</h2>
+@*<h3>@ViewBag.Message</h3>*@
+
+
+
+<form action="" method="post" enctype="multipart/form-data">
+    <br />
+    <fieldset>
+        <legend>SafetySheet Information</legend>
+        <div class="editor-field">
+
+
+            <div class="row">
+                <div class="col-md-2">
+                    Product Name:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.ChemicalName, new
+                        {
+                                title = "Enter chemical/Substance name",
+                                @class = "form-control input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                autocomplete = "off"
+
+                        })
+                    </div>
+                </div>
+
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Revision Date:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.lastRevisionDate, new
+                        {
+                                title = "Select a date",
+                                @class = "form-control datePickerPickcer input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                id = "datepicker",
+                                autocomplete = "off"
+
+                        })
+                    </div>
+
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Chemical Abstracts Service (CAS) Number:
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group input">
+                        @Html.TextBoxFor(m => m.CAS, new
+                        {
+                                title = "Enter CAS Number",
+                                @class = "form-control input-sm input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "right",
+                                autocomplete = "off"
+                        })
+                    </div>
+
+
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-md-2">
+                    Upload SDS:
+                </div>
+                <div class="col-md-6">
+                    @Html.TextBoxFor(m => m.FileDocument, new
+                    {
+                        type = "file",
+                                title = "Click to select a file",
+                                @class = "input-tooltip",
+                                data_toggle = "tooltip",
+                                data_placement = "bottom"
+                    })
+                </div>
+            </div><br>
+        </div>
+
+        <input type="submit" value="Upload" class="btn btn-info input-tooltip"
+               data-toggle="tooltip" data-placement="right" title="Click to save new entry" /><br>
+    </fieldset>
+
+
+    <br /> <br />
+
+    <a href="~/Home/SafetySheet" class="input-tooltip" data-toggle="tooltip" data-placement="right" title="Go to SDS database">Safety Datasheet</a>
+
+</form>
+
+<h3><span style="font-size: 16px; color: #62adaf;">Note: </span></h3>
+<p>The chemical name and all other information provided must correspond to the information on the safety data sheet related to this product  </p>
+
+@if (ViewBag.Message != null)
+{
+    <script>
+
+    $(document).ready(function () {
+
+        alert('@ViewBag.Message');
+
+         $('[data_toggle="tooltip"]').tooltip();
+
+
+    });
+
+    </script>
+
+}
+<script>
+
+    $(document).ready(function () {
+
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $("#datepicker").datepicker({
+            dateFormat: "mm/dd/yy",
+            showOtherMonths: true,
+            selectOtherMonths: true,
+            autoclose: true,
+            changeMonth: true,
+            changeYear: true,
+            //gotoCurrent: true,
+        });
+    });
+
+</script>
+
+
+
+
